@@ -1,9 +1,0 @@
-#!/bin/bash
-# 0-bring_me_home
-# Heç bir shell dəyişəni istifadə etmədən istifadəçinin ev qovluğuna keçir.
-
-if command -v getent >/dev/null 2>&1; then
-  cd "$(getent passwd "$(whoami)" | cut -d: -f6)" || { echo "cd failed" >&2; exit 1; }
-else
-  cd "$(awk -F: -v u="$(whoami)" '$1==u{print $6}' /etc/passwd)" || { echo "cd failed" >&2; exit 1; }
-fi
